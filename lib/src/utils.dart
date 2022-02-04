@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
@@ -289,4 +288,23 @@ class ServerSideVerificationOptions {
         'userId': this.userId,
         'customData': this.customData,
       };
+}
+
+class FutureSyncExecutor {
+  Future? future;
+
+  Future exec(Function function, List<dynamic>? positionalArguments,
+      [Map<Symbol, dynamic>? namedArguments]) {
+    final applyFunction = () {
+      return Function.apply(function, positionalArguments, namedArguments);
+    };
+
+    if (future == null) {
+      future = Future(applyFunction);
+      return future!;
+    } else {
+      future = future!.then((value) => applyFunction());
+      return future!;
+    }
+  }
 }
