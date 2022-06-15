@@ -77,7 +77,7 @@ class AdTextView extends AdView {
   Map<String, dynamic> toJson() {
     final json = super.toJson();
     final defaultColor = () {
-      final b = WidgetsBinding.instance!.window.platformBrightness;
+      final b = WidgetsBinding.instance.window.platformBrightness;
       switch (b) {
         case Brightness.dark:
           return Colors.white;
