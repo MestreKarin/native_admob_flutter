@@ -160,7 +160,7 @@ class AppOpenAd extends LoadShowAd<FullScreenAdEvent> {
         'The orientation must be a valid orientation: $ORIENTATION_PORTRAIT, $ORIENTATION_LANDSCAPE',
       );
     } else {
-      final window = WidgetsBinding.instance!.window;
+      final window = WidgetsBinding.instance.window;
       final size = window.physicalSize / window.devicePixelRatio;
       final deviceOrientation = size.width > size.height
           ? Orientation.landscape
